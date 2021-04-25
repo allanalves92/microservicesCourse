@@ -1,0 +1,42 @@
+version: '3.7'
+volumes:
+  mongodb_data_container:
+  mysql_data_container:
+networks:
+  default:
+    external:
+      name: springbankNet
+services:
+  axon-server:
+    container_name: axon-server
+    image: axoniq/axonserver:latest
+    ports:
+      - 8024:8024
+    restart: always
+  mongo-container:
+    container_name: mongo-container
+    image: mongo:latest
+    volumes:
+      - mongodb_data_container:/data/db
+    ports:
+      - 27017:27017
+    restart: always
+  mysql-container:
+    container_name: mysql-container
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_ROOT_PASSWORD=springbankRootPswdocker
+    volumes:
+      - mysql_data_container:/var/lib/mysql
+    ports:
+      - 3306:3306
+    restart: always
+  adminer:
+    container_name: adminer
+    image: adminer:latest
+    environment:
+      - ADMINER_DEFAULT_SERVER=mysql-container
+    ports:
+      - 8080:8080
+    restart: always
