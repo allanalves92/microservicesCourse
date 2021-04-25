@@ -4,6 +4,9 @@ import com.springbank.user.core.models.*;
 import lombok.*;
 import org.axonframework.modelling.command.*;
 
+import javax.validation.*;
+import javax.validation.constraints.*;
+
 @Data
 @Builder
 public class RegisterUserCommand {
@@ -11,5 +14,7 @@ public class RegisterUserCommand {
     @TargetAggregateIdentifier
     private String id;
 
+    @Valid
+    @NotNull(message = "no user details were supplied")
     private User user;
 }
