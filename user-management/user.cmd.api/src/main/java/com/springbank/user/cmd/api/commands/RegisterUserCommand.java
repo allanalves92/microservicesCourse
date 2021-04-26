@@ -10,11 +10,9 @@ import javax.validation.constraints.*;
 @Data
 @Builder
 public class RegisterUserCommand {
-
     @TargetAggregateIdentifier
     private String id;
-
-    @Valid
     @NotNull(message = "no user details were supplied")
+    @Valid
     private User user;
 }
