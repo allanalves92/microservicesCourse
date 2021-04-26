@@ -4,6 +4,7 @@ import lombok.*;
 import org.axonframework.modelling.command.*;
 
 @Data
+@AllArgsConstructor
 public class RemoveUserCommand {
 
     @TargetAggregateIdentifier
