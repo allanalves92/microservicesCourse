@@ -1,8 +1,9 @@
 package com.springbank.user.query.api.queries;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
+@AllArgsConstructor
 public class SearchUsersQuery {
     private String filter;
 }

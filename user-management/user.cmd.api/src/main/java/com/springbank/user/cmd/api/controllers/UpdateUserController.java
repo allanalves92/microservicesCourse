@@ -2,6 +2,7 @@ package com.springbank.user.cmd.api.controllers;
 
 import com.springbank.user.cmd.api.commands.*;
 import com.springbank.user.cmd.api.dto.*;
+import com.springbank.user.core.dto.*;
 import org.axonframework.commandhandling.gateway.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
