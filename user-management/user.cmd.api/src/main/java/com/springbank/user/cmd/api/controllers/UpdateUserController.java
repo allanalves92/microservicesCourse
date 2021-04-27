@@ -1,11 +1,11 @@
 package com.springbank.user.cmd.api.controllers;
 
 import com.springbank.user.cmd.api.commands.*;
-import com.springbank.user.cmd.api.dto.*;
 import com.springbank.user.core.dto.*;
 import org.axonframework.commandhandling.gateway.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
+import org.springframework.security.access.prepost.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.*;
@@ -21,6 +21,7 @@ public class UpdateUserController {
     }
 
     @PutMapping(path = "/{id}")
+    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE')")
     public ResponseEntity<BaseResponse> updateUser(@PathVariable(value = "id") String id,
                                                    @Valid @RequestBody UpdateUserCommand command) {
         try {

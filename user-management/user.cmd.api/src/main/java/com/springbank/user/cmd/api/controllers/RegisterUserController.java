@@ -6,6 +6,7 @@ import lombok.extern.slf4j.*;
 import org.axonframework.commandhandling.gateway.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
+import org.springframework.security.access.prepost.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.*;
@@ -23,6 +24,7 @@ public class RegisterUserController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE')")
     public ResponseEntity<RegisterUserResponse> registerUser(@Valid @RequestBody RegisterUserCommand command) {
         var id = UUID.randomUUID().toString();
         command.setId(id);
