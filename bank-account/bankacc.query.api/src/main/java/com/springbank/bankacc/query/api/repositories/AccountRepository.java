@@ -7,7 +7,7 @@ import java.util.*;
 
 public interface AccountRepository extends CrudRepository<BankAccount, String> {
 
-    Optional<BankAccount> findByAccountHolder(String accountHolderId);
+    Optional<BankAccount> findByAccountHolderId(String accountHolderId);
 
     List<BankAccount> findByBalanceGreaterThan(double balance);
 

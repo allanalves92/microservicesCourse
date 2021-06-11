@@ -6,7 +6,7 @@ import com.springbank.bankacc.query.api.queries.*;
 public interface AccountQueryHandler {
 
     AccountLookupResponse findAccountById(FindAccountByIdQuery query);
-    AccountLookupResponse findAccountByHolderId(FindAccountByHolderId query);
+    AccountLookupResponse findAccountByHolderId(FindAccountByHolderIdQuery query);
     AccountLookupResponse findAllAccounts(FindAllAccountsQuery query);
     AccountLookupResponse findAccountWithBalance(FindAccountWithBalanceQuery query);
 }

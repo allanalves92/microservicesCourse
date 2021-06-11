@@ -4,11 +4,14 @@ import com.springbank.bankacc.core.models.*;
 import com.springbank.bankacc.query.api.dto.*;
 import com.springbank.bankacc.query.api.queries.*;
 import com.springbank.bankacc.query.api.repositories.*;
+import org.axonframework.config.*;
 import org.axonframework.queryhandling.*;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
 
 import java.util.*;
 
+@Service
 public class AccountQueryHandlerImpl implements AccountQueryHandler {
 
     private final AccountRepository accountRepository;
@@ -31,8 +34,8 @@ public class AccountQueryHandlerImpl implements AccountQueryHandler {
 
     @QueryHandler
     @Override
-    public AccountLookupResponse findAccountByHolderId(FindAccountByHolderId query) {
-        var bankAccount = accountRepository.findByAccountHolder(query.getAccountHolderId());
+    public AccountLookupResponse findAccountByHolderId(FindAccountByHolderIdQuery query) {
+        var bankAccount = accountRepository.findByAccountHolderId(query.getAccountHolderId());
         var response = bankAccount.isPresent() ? new AccountLookupResponse("Bank Account " +
                 "successfully returned!", bankAccount.get()) : new AccountLookupResponse("No " +
                 "Bank Account found for Holder ID - " + query.getAccountHolderId());
